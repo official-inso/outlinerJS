@@ -152,7 +152,9 @@ export default class templates {
             btn.icons,
             btn.type,
             btn.click,
-            prop.id != undefined ? prop.id : generateId
+            prop.id != undefined ? prop.id : generateId,
+            btn.value,
+            item
           )
         );
       }
@@ -246,7 +248,11 @@ export default class templates {
       item.removeAttribute('selected');
     });
 
-    element.setAttribute('selected', 'true');
+    if (element.getAttribute('selected') == 'true') {
+      element.setAttribute('selected', 'false');
+    } else {
+      element.setAttribute('selected', 'true');
+    }
 
     const id = element.querySelector('.navigator__item__elem').getAttribute('data-id');
     const ids = [];
@@ -264,62 +270,41 @@ export default class templates {
    * @param {*} type Тип кнопки
    * @returns {HTMLElement} Кнопка с иконкой и типом кнопки
    */
-  createButton(iconsClass, type, callback, id) {
+  createButton(iconsClass, type, callback, id, value, item) {
     let button = document.createElement("button");
-    button.classList.add(iconsClass.enabled);
     button.setAttribute("type", type);
 
-    if (callback != undefined)
-      button.addEventListener("click", (e) => {
-        let pElement = e.target.parentElement.parentElement.parentElement;
-        callback(pElement.getAttribute(type) == "false", id, button, e);
-      });
+    button.setAttribute("enabled", value ? 'enabled' : 'disabled');
 
-    if (type == "visibled") {
-      this.eyeButton(button, callback, iconsClass);
+    button.classList.add(value ? iconsClass.enabled : iconsClass.disabled);
+    
+    if (callback != undefined){
+      button.addEventListener("click", (e) => {
+        let this_value = button.getAttribute('enabled') == 'enabled';
+
+        if (this_value){
+          button.setAttribute("enabled", 'disabled');
+          button.classList.remove(iconsClass.enabled);
+          button.classList.add(iconsClass.disabled);
+        } else {
+          button.setAttribute("enabled", 'enabled');
+          button.classList.remove(iconsClass.disabled);
+          button.classList.add(iconsClass.enabled);
+        }
+        callback(this_value, id, button, e);
+      });
     }
 
-    if (type == "locked") {
-      this.lockButton(button, callback, iconsClass);
+    if (type.match(/^(visibled|locked)$/ui)) {
+      
+      button.addEventListener("click", (e) => {
+        let this_value = button.getAttribute('enabled') == 'enabled';
+        item.setAttribute(type, this_value);
+      });
+      item.setAttribute(type, value);
     }
 
     return button;
-  }
-
-  lockButton(element, callback, iconsClass) {
-    if (callback != undefined)
-      element.addEventListener("click", (e) => {
-        let pElement = e.target.parentElement.parentElement.parentElement;
-
-        e.target.classList.remove(iconsClass.enabled);
-        e.target.classList.remove(iconsClass.disabled);
-
-        if (pElement.getAttribute("locked") == "true") {
-          e.target.classList.add(iconsClass.enabled);
-          pElement.setAttribute("locked", "false");
-        } else {
-          e.target.classList.add(iconsClass.disabled);
-          pElement.setAttribute("locked", "true");
-        }
-      });
-  }
-
-  eyeButton(element, callback, iconsClass) {
-    if (callback != undefined)
-      element.addEventListener("click", (e) => {
-        let pElement = e.target.parentElement.parentElement.parentElement;
-
-        e.target.classList.remove(iconsClass.enabled);
-        e.target.classList.remove(iconsClass.disabled);
-
-        if (pElement.getAttribute("visibled") == "true") {
-          e.target.classList.add(iconsClass.disabled);
-          pElement.setAttribute("visibled", "false");
-        } else {
-          e.target.classList.add(iconsClass.enabled);
-          pElement.setAttribute("visibled", "true");
-        }
-      });
   }
 
   setPropery(element, propery) {
