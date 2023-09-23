@@ -17,8 +17,7 @@ import { replaceFieldsInString, replaceFieldsInElement } from "../methods/replac
  * @property {HTMLElement} #item Элемент item для навигатора
  * @property {HTMLElement} #_container Контейнер для навигатора
  */
-export default class templates{
-
+export default class templates {
   #container = undefined;
 
   /**
@@ -26,7 +25,7 @@ export default class templates{
    * @type {HTMLElement}
    * @private
    */
-  #item
+  #item;
 
   /**
    * Контейнер для навигатора
@@ -40,85 +39,144 @@ export default class templates{
    * @constructor
    * @returns {void}
    */
-  constructor(){
+  constructor() {
     // this.#item = this.#createItem();
-    this.#container = this.#randomString();  
+    this.#container = this.#randomString();
     // this.#_container = this.#createContainer(this.#container);
   }
 
-  #randomString = (n = 30, alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789') => "id" + Array(n).fill(alphabet).map(x => x[Math.floor(Math.random() * x.length)]).join('');
+  #randomString = (
+    n = 30,
+    alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+  ) =>
+    "id" +
+    Array(n)
+      .fill(alphabet)
+      .map((x) => x[Math.floor(Math.random() * x.length)])
+      .join("");
 
   /**
    * Создает элемент item для навигатора и возвращает его в виде строки с замененными полями
-   * @returns 
+   * @returns
    */
-  createItem(prop = {}){
-    
-    console.log(prop)
+  createItem(prop = {}) {
+    console.log(prop);
 
     // Создаем элементы
-    let item = document.createElement('item');
-    let item_list = document.createElement('div');
-    let item_list_container = document.createElement('div');
-    let item_elem = document.createElement('div');
-    let item_ico = document.createElement('button');
-    let item_ico2 = document.createElement('div');
-    let item_name = document.createElement('input');
-    let item_elem_left = document.createElement('div');
-    let item_elem_right = document.createElement('div');
+    let item = document.createElement("item");
+    let item_list = document.createElement("div");
+    let item_list_container = document.createElement("div");
+    let item_elem = document.createElement("div");
+    let item_ico = document.createElement("button");
+    let item_ico2 = document.createElement("div");
+    let item_name = document.createElement("input");
+    let item_elem_left = document.createElement("div");
+    let item_elem_right = document.createElement("div");
 
     const generateId = this.#randomString();
 
     // Создаем атрибуты для элемента item
-    item.setAttribute('visibled', prop.visibled != undefined ? prop.visibled : true);
-    item.setAttribute('selected', prop.selected != undefined ? prop.selected : false);
-    item.setAttribute('isGroup', prop.list && prop.list.length > 0);
-    item.setAttribute('open', prop.open != undefined ? prop.open : true);
-    item.setAttribute('id', this.#randomString());
+    item.setAttribute(
+      "visibled",
+      prop.visibled != undefined ? prop.visibled : true
+    );
+    item.setAttribute(
+      "selected",
+      prop.selected != undefined ? prop.selected : false
+    );
+    item.setAttribute("isGroup", prop.list && prop.list.length > 0);
+    item.setAttribute("open", prop.open != undefined ? prop.open : true);
+    item.setAttribute("id", this.#randomString());
+    item.setAttribute("locked", prop.locked != undefined ? prop.locked : false);
 
     // Указываем классы и атрибуты для элементов item_list и item_list_container
-    item_list.classList.add('navigaor__item__list');
-    item_list_container.classList.add('navigaor__item__list__container');
+    item_list.classList.add("navigaor__item__list");
+    item_list_container.classList.add("navigaor__item__list__container");
 
     if (prop.list && prop.list.length > 0) {
       for (const key in prop.list) {
         const newLine = prop.list[key];
-        item_list_container.appendChild(this.createItem(newLine))
+        item_list_container.appendChild(this.createItem(newLine));
       }
     }
 
     // Указываем классы и атрибуты для элемента item_elem
-    item_elem.classList.add('navigator__item__elem');
-    item_elem.setAttribute('data-id', prop.id != undefined ? prop.id : generateId);
+    item_elem.classList.add("navigator__item__elem");
+    item_elem.setAttribute(
+      "data-id",
+      prop.id != undefined ? prop.id : generateId
+    );
 
     // Указываем классы и атрибуты для элемента item_elem_left
-    item_elem_left.classList.add('navigator__item__elem__left');
+    item_elem_left.classList.add("navigator__item__elem__left");
 
     // Указываем классы и атрибуты для элемента item_ico
-    item_ico.classList.add('navigator__item_ico');
-    item_ico.classList.add('icons-right');
+    item_ico.classList.add("navigator__item_ico");
+    item_ico.classList.add("icons-right");
 
     // Указываем классы и атрибуты для элемента item_ico2
-    item_ico2.classList.add('navigator__item_ico2');
-    item_ico2.setAttribute('type', prop.type != undefined ? prop.type : 'default');
+    item_ico2.classList.add("navigator__item_ico2");
+    item_ico2.setAttribute(
+      "type",
+      prop.type != undefined ? prop.type : "default"
+    );
 
     // Указываем классы и атрибуты для элемента item_name
-    item_name.setAttribute('type', 'text');
-    item_name.setAttribute('value', prop.name != undefined ? prop.name : 'Без имени');
-    item_name.setAttribute('rename', prop.renameEdit != undefined ? prop.renameEdit : false);
-    item_name.setAttribute('disabled', 'disabled');
-    item_name.setAttribute('initial-value', prop.name != undefined ? prop.name : 'Без имени');
-    item_name.classList.add('navigator__item__name');
+    item_name.setAttribute("type", "text");
+    item_name.setAttribute(
+      "value",
+      prop.name != undefined ? prop.name : "Без имени"
+    );
+    item_name.setAttribute(
+      "rename",
+      prop.renameEdit != undefined ? prop.renameEdit : false
+    );
+    item_name.setAttribute("disabled", "disabled");
+    item_name.setAttribute(
+      "initial-value",
+      prop.name != undefined ? prop.name : "Без имени"
+    );
+    item_name.classList.add("navigator__item__name");
 
-    item_elem_right.classList.add('navigator__item__elem__right');
+    item_elem_right.classList.add("navigator__item__elem__right");
 
-    if(prop.buttons && prop.buttons.length > 0){
+    if (prop.buttons && prop.buttons.length > 0) {
       for (const key in prop.buttons) {
         const btn = prop.buttons[key];
-        if (btn.type == undefined) btn.type = 'default';
-        if (btn.click == undefined) btn.click = () => { };
-        item_elem_right.appendChild(this.createButton(btn.icons.enabled, btn.type, btn.click, generateId));
+        if (btn.type == undefined) btn.type = "default";
+        if (btn.click == undefined) btn.click = () => {};
+        item_elem_right.appendChild(
+          this.createButton(
+            btn.icons,
+            btn.type,
+            btn.click,
+            prop.id != undefined ? prop.id : generateId
+          )
+        );
       }
+    }
+
+    if(prop.rename != undefined){
+      item_name.addEventListener('dblclick', (e) => {
+        if (item_name.getAttribute('disabled') == 'disabled') {
+          item_name.removeAttribute('disabled');
+          item_name.focus();
+        }
+      })
+
+      item_name.addEventListener('blur', (e) => {
+        if (item_name.getAttribute("initial-value") != item_name.value) {
+          item_name.setAttribute("initial-value", item_name.value);
+          item_name.setAttribute("disabled", "disabled");
+          item_name.setAttribute("initial-value", item_name.value);
+          prop.rename(
+            item_name.value,
+            prop.id != undefined ? prop.id : generateId,
+            item_name,
+            e
+          );
+        }
+      });
     }
 
     // Добавляем элементы в DOM дерево элемента item_elem_left
@@ -139,17 +197,17 @@ export default class templates{
     item.appendChild(item_elem);
     item.appendChild(item_list);
 
-    return item
+    return item;
   }
 
   /**
-   * Создает контейнер для навигатора и возвращает его в виде строки с замененными полями
-   * @returns Возвращает контейнер для навигатора в виде строки с замененными полями
+   * Создает контейнер для навигатора и возвращает его
+   * @returns Возвращает контейнер для навигатора
    */
-  #createContainer(id){
-    let navigator = document.createElement('navigatorJS');
-    navigator.classList.add('outliner__navigator');
-    navigator.setAttribute('id', id);
+  #createContainer(id) {
+    let navigator = document.createElement("navigatorJS");
+    navigator.classList.add("outliner__navigator");
+    navigator.setAttribute("id", id);
 
     return navigator;
   }
@@ -161,43 +219,67 @@ export default class templates{
    * @returns {HTMLElement} Кнопка с иконкой и типом кнопки
    */
   createButton(iconsClass, type, callback, id) {
-    let button = document.createElement('button');
-    button.classList.add(iconsClass);
-    button.setAttribute('type', type);
+    let button = document.createElement("button");
+    button.classList.add(iconsClass.enabled);
+    button.setAttribute("type", type);
 
-    if (callback != undefined) button.addEventListener('click', (e) => {
-      let pElement = e.target.parentElement.parentElement.parentElement;
-      callback(pElement.getAttribute('visibled') == 'false', id, button, e)
-    });
+    if (callback != undefined)
+      button.addEventListener("click", (e) => {
+        let pElement = e.target.parentElement.parentElement.parentElement;
+        callback(pElement.getAttribute(type) == "false", id, button, e);
+      });
 
-    if (type == 'eye') {
-      this.eyeButton(button, callback);
+    if (type == "visibled") {
+      this.eyeButton(button, callback, iconsClass);
+    }
+
+    if (type == "locked") {
+      this.lockButton(button, callback, iconsClass);
     }
 
     return button;
   }
 
-  eyeButton(element, callback){
-    if (callback != undefined) element.addEventListener('click', (e) => {
-      let pElement = e.target.parentElement.parentElement.parentElement;
+  lockButton(element, callback, iconsClass) {
+    if (callback != undefined)
+      element.addEventListener("click", (e) => {
+        let pElement = e.target.parentElement.parentElement.parentElement;
 
-      e.target.classList.remove('icons-eye-none');
-      e.target.classList.remove('icons-eye');
+        e.target.classList.remove(iconsClass.enabled);
+        e.target.classList.remove(iconsClass.disabled);
 
-      if (pElement.getAttribute('visibled') == 'true') {
-        e.target.classList.add('icons-eye-none');
-        pElement.setAttribute('visibled', 'false');
-      } else {
-        e.target.classList.add('icons-eye');
-        pElement.setAttribute('visibled', 'true');
-      }
-    });
+        if (pElement.getAttribute("locked") == "true") {
+          e.target.classList.add(iconsClass.enabled);
+          pElement.setAttribute("locked", "false");
+        } else {
+          e.target.classList.add(iconsClass.disabled);
+          pElement.setAttribute("locked", "true");
+        }
+      });
   }
 
-  setPropery(element, propery){
+  eyeButton(element, callback, iconsClass) {
+    if (callback != undefined)
+      element.addEventListener("click", (e) => {
+        let pElement = e.target.parentElement.parentElement.parentElement;
+
+        e.target.classList.remove(iconsClass.enabled);
+        e.target.classList.remove(iconsClass.disabled);
+
+        if (pElement.getAttribute("visibled") == "true") {
+          e.target.classList.add(iconsClass.disabled);
+          pElement.setAttribute("visibled", "false");
+        } else {
+          e.target.classList.add(iconsClass.enabled);
+          pElement.setAttribute("visibled", "true");
+        }
+      });
+  }
+
+  setPropery(element, propery) {
     console.log(element, propery);
 
-    element.querySelector('input').setAttribute('value', propery.name);
+    element.querySelector("input").setAttribute("value", propery.name);
     return element;
   }
 
@@ -205,10 +287,8 @@ export default class templates{
    * Создает контейнер для навигатора и возвращает его в виде строки с замененными полями
    * @returns Возвращает контейнер для навигатора в виде строки с замененными полями
    */
-  get container(){
+  get container() {
     let f = this.#createContainer(this.#container);
-    return f
+    return f;
   }
-
-
 };
