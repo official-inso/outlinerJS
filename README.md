@@ -233,4 +233,6 @@ outliner.setValue([
 outliner.getValue();
 ```
 
+![Иллюстрация к проекту](https://github.com/official-inso/outlinerJS/raw/main/exaple/image.png)
+
 Желаю вам удачи в использовании данной библиотеки! 🔥
