@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
   outliner.setValue([
     {
       type: "graph",
-      name: "тест",
-      id: "global_trhyfgh",
+      name: "Название элемента",
+      id: "id_element",
       buttons: [
         {
           icons: {
@@ -56,8 +56,8 @@ document.addEventListener('DOMContentLoaded', function() {
       list: [
         {
           type: "line",
-          name: "тест",
-          id: "global_trhyfg1",
+          name: "Название элемента",
+          id: "id_element",
           click: () => {},
           rename: () => {},
           buttons: [
@@ -85,8 +85,8 @@ document.addEventListener('DOMContentLoaded', function() {
           list: [
             {
               type: "line",
-              name: "тест",
-              id: "global_trhyfg1",
+              name: "Название элемента",
+              id: "id_element",
               click: () => {},
               rename: () => {},
               list: [],
@@ -115,8 +115,8 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             {
               type: "line",
-              name: "тест",
-              id: "global_trhyfg1",
+              name: "Название элемента",
+              id: "id_element",
               click: () => {},
               rename: () => {},
               list: [],
@@ -147,8 +147,8 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
           type: "object",
-          name: "тест",
-          id: "global_trhyfg2",
+          name: "Название элемента",
+          id: "id_element",
           click: () => {},
           rename: () => {},
           list: [],

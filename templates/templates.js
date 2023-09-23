@@ -60,8 +60,6 @@ export default class templates {
    * @returns
    */
   createItem(prop = {}) {
-    console.log(prop);
-
     // Создаем элементы
     let item = document.createElement("item");
     let item_list = document.createElement("div");
