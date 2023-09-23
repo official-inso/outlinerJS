@@ -209,6 +209,14 @@ export default class templates {
       });
     }
 
+    item_ico.addEventListener('click', (e) => {
+      if (item.getAttribute('open') == 'true') {
+        item.setAttribute('open', 'false');
+      } else {
+        item.setAttribute('open', 'true');
+      }
+    });
+
     // Добавляем элементы в DOM дерево элемента item_elem_left
     item_elem_left.appendChild(item_ico);
     item_elem_left.appendChild(item_ico2);
@@ -244,8 +252,10 @@ export default class templates {
 
   #selected(element, prop, e) {
 
-    if(!e.ctrlKey) document.querySelectorAll('item').forEach(item => {
-      item.removeAttribute('selected');
+    if (!e.ctrlKey) document.querySelectorAll('item').forEach(item => {
+      if (item != element) {
+        item.removeAttribute('selected');
+      }
     });
 
     if (element.getAttribute('selected') == 'true') {
@@ -305,13 +315,6 @@ export default class templates {
     }
 
     return button;
-  }
-
-  setPropery(element, propery) {
-    console.log(element, propery);
-
-    element.querySelector("input").setAttribute("value", propery.name);
-    return element;
   }
 
   /**

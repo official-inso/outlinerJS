@@ -227,7 +227,7 @@ navigatorjs item[isGroup=false] .navigator__item_ico {
   color: var(--color-dark);
 }
 
-navigatorjs item[open=true] .navigator__item_ico {
+navigatorjs item[open=true] > .navigator__item__elem > .navigator__item__elem__left > .navigator__item_ico {
   transform: rotate(90deg);
 }
 
