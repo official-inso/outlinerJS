@@ -34,6 +34,8 @@ export default class templates {
    */
   #_container;
 
+  #arr_opened = [];
+
   /**
    * Конструктор класса templates
    * @constructor
@@ -85,7 +87,13 @@ export default class templates {
       prop.select != undefined ? prop.select : false
     );
     item.setAttribute("isGroup", prop.list && prop.list.length > 0);
-    item.setAttribute("open", prop.open != undefined ? prop.open : true);
+
+    if (this.#arr_opened.includes(prop.id)){
+      item.setAttribute("open", true);
+    } else {
+      item.setAttribute("open", prop.open != undefined ? prop.open : false);
+    }
+    
     item.setAttribute("id", this.#randomString());
     item.setAttribute("locked", prop.locked != undefined ? prop.locked : false);
 
@@ -112,7 +120,14 @@ export default class templates {
 
     // Указываем классы и атрибуты для элемента item_ico
     item_ico.classList.add("navigator__item_ico");
-    item_ico.classList.add("icons-right");
+
+    if (prop.list && prop.list.length > 0){
+      item_ico.classList.add("icons-right");
+    } else {
+      item_ico.innerHTML = '•';
+      item_ico.style.opacity = '0.5'
+    }
+    
 
     // Указываем классы и атрибуты для элемента item_ico2
     item_ico2.classList.add("navigator__item_ico2");
@@ -210,8 +225,11 @@ export default class templates {
     item_ico.addEventListener('click', (e) => {
       if (item.getAttribute('open') == 'true') {
         item.setAttribute('open', 'false');
+        const i = this.#arr_opened.indexOf(prop.id);
+        this.#arr_opened.splice(i, 1);
       } else {
         item.setAttribute('open', 'true');
+        this.#arr_opened.push(prop.id)
       }
     });
 

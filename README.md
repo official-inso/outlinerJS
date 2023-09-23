@@ -56,8 +56,8 @@ outliner.setValue([
         },
       },
     ],
-    click: (value, elementId, element, e) => {
-      console.log('click', value, elementId, element, e);
+    click: (elementId, element, e) => {
+      console.log('click', elementId, element, e);
     },
     selected: (elementId, element, elementsId, e) => {
       console.log('selected', elementId, element, elementsId, e);
@@ -68,11 +68,19 @@ outliner.setValue([
     },
     list: [
       {
-        type: "line",
-        name: "Название элемента",
+        type: "folder",
+        name: "Название папки",
         id: "id_element",
-        click: () => {},
-        rename: () => {},
+        click: (elementId, element, e) => {
+          console.log('click', elementId, element, e);
+        },
+        selected: (elementId, element, elementsId, e) => {
+          console.log('selected', elementId, element, elementsId, e);
+        },
+        select: false,
+        rename: (value, elementId, element, e) => {
+          console.log('rename', value, elementId, element, e);
+        },
         buttons: [
           {
             icons: {
@@ -81,8 +89,8 @@ outliner.setValue([
             },
             value: false,
             type: "visibled",
-            click: (e) => {
-              console.log(e);
+            click: (value, elementId, element, e) => {
+              console.log(value, elementId, element, e);
             },
           },
           {
@@ -92,7 +100,9 @@ outliner.setValue([
             },
             value: false,
             type: "locked",
-            click: (value) => {},
+            click: (value, elementId, element, e) => {
+              console.log(value, elementId, element, e);
+            },
           },
         ],
         list: [
@@ -100,8 +110,16 @@ outliner.setValue([
             type: "line",
             name: "Название элемента",
             id: "id_element",
-            click: () => {},
-            rename: () => {},
+            click: (elementId, element, e) => {
+              console.log('click', elementId, element, e);
+            },
+            selected: (elementId, element, elementsId, e) => {
+              console.log('selected', elementId, element, elementsId, e);
+            },
+            select: false,
+            rename: (value, elementId, element, e) => {
+              console.log('rename', value, elementId, element, e);
+            },
             list: [],
             buttons: [
               {
@@ -111,8 +129,8 @@ outliner.setValue([
                 },
                 value: false,
                 type: "visibled",
-                click: (e) => {
-                  console.log(e);
+                click: (value, elementId, element, e) => {
+                  console.log(value, elementId, element, e);
                 },
               },
               {
@@ -122,7 +140,9 @@ outliner.setValue([
                 },
                 value: false,
                 type: "locked",
-                click: (value) => {},
+                click: (value, elementId, element, e) => {
+                  console.log(value, elementId, element, e);
+                },
               },
             ],
           },
@@ -130,8 +150,16 @@ outliner.setValue([
             type: "line",
             name: "Название элемента",
             id: "id_element",
-            click: () => {},
-            rename: () => {},
+            click: (elementId, element, e) => {
+              console.log('click', elementId, element, e);
+            },
+            selected: (elementId, element, elementsId, e) => {
+              console.log('selected', elementId, element, elementsId, e);
+            },
+            select: false,
+            rename: (value, elementId, element, e) => {
+              console.log('rename', value, elementId, element, e);
+            },
             list: [],
             buttons: [
               {
@@ -141,8 +169,8 @@ outliner.setValue([
                 },
                 value: false,
                 type: "visibled",
-                click: (e) => {
-                  console.log(e);
+                click: (value, elementId, element, e) => {
+                  console.log(value, elementId, element, e);
                 },
               },
               {
@@ -152,7 +180,9 @@ outliner.setValue([
                 },
                 value: false,
                 type: "locked",
-                click: (value) => {},
+                click: (value, elementId, element, e) => {
+                  console.log(value, elementId, element, e);
+                },
               },
             ],
           },
@@ -162,8 +192,16 @@ outliner.setValue([
         type: "object",
         name: "Название элемента",
         id: "id_element",
-        click: () => {},
-        rename: () => {},
+        click: (elementId, element, e) => {
+          console.log('click', elementId, element, e);
+        },
+        selected: (elementId, element, elementsId, e) => {
+          console.log('selected', elementId, element, elementsId, e);
+        },
+        select: false,
+        rename: (value, elementId, element, e) => {
+          console.log('rename', value, elementId, element, e);
+        },
         list: [],
         buttons: [
           {
@@ -173,8 +211,8 @@ outliner.setValue([
             },
             value: false,
             type: "visibled",
-            click: (e) => {
-              console.log(e);
+            click: (value, elementId, element, e) => {
+              console.log(value, elementId, element, e);
             },
           },
           {
@@ -184,7 +222,9 @@ outliner.setValue([
             },
             value: false,
             type: "locked",
-            click: (value) => {},
+            click: (value, elementId, element, e) => {
+              console.log(value, elementId, element, e);
+            },
           },
         ],
       },
@@ -212,7 +252,6 @@ outliner.setValue([
      - `element` - HTMLElement кнопки
      - `e` - Данные о событии
 7. `click` - Это callback функция, которая будет вызвана в момент нажатие на элемент
-   - `value` - Текущее значение для кнопки
    - `elementId` - ID элемента к которому привязана кнопка
    - `element` - HTMLElement кнопки
    - `e` - Данные о событии
@@ -228,9 +267,16 @@ outliner.setValue([
    - `e` - Данные о событии
 11. `list` - Массив принимающий вложения (Значение по умолчанию: пустой массив). Структура выглядит точно так же как и описано выше.
 
-### Пример вывода навигационного меню
+### Пример вывода навигационного меню (Способ №1)
+Добавляение происходит путем удаление предыдущих значений и добавления всех значений к текущему DOM объекту
 ```javascript
 outliner.getValue();
+```
+
+### Пример вывода навигационного меню (Способ №2)
+Добавляение происходит путем добавления новых значений к текущему DOM объекту
+```javascript
+outliner.appendValue({...arrayItems});
 ```
 
 ![Иллюстрация к проекту](https://raw.githubusercontent.com/official-inso/outlinerJS/9330041ac8f6eccab91cf2583b2a4e463b8893a1/example/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202023-09-23%20215304.png)

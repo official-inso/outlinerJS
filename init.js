@@ -57,11 +57,26 @@ export default class OutlinerJS {
   }
 
   /**
-   * Инициализация навигатора по переданному селектору или элементу
-   * @param {string|HTMLElement} selector Селектор или элемент где будет инициализировано дерево объектов
+   * Добавление значений для навигатора
+   * @description Добавляение происходит путем удаление предыдущих значений и добавления всех значений к текущему DOM объекту
    */
   getValue(){
     const items = this.#getListItems(this.#array)
+    document.getElementById(this.templates.container.getAttribute('id')).innerHTML = '';
+    items.forEach(item => {
+      document.getElementById(this.templates.container.getAttribute('id')).appendChild(item);
+    });
+  }
+
+  /**
+   * Добавляет новые значения для навигатора для дерева объектов переданного в виде массива объектов
+   * @description Добавляение происходит путем добавления новых значений к текущему DOM объекту
+   * @param {*} array 
+   */
+  appendValue(array){
+    this.#array = array;
+    const items = this.#getListItems(this.#array)
+
     items.forEach(item => {
       document.getElementById(this.templates.container.getAttribute('id')).appendChild(item);
     });
