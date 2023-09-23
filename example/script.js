@@ -283,10 +283,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.getElementById('new2').addEventListener('click', function () {
 
+    
+
     let g = [{
-      type: "object",
-      name: "Название элемента " + ++i,
-      id: "id_element" + i,
+      type: "graph",
+      name: "Название элемента" + ++i,
+      id: "id_element01" + i,
       buttons: [
         {
           icons: {
@@ -332,7 +334,450 @@ document.addEventListener('DOMContentLoaded', function() {
       rename: (value, elementId, element, e) => {
         console.log('rename', value, elementId, element, e);
       },
-      list: [],
+      list: [
+        {
+          type: "folder",
+          name: "Название папки" + i,
+          id: "id_element02" + i, 
+          click: (elementId, element, e) => {
+            console.log('click', elementId, element, e);
+          },
+          selected: (elementId, element, elementsId, e) => {
+            console.log('selected', elementId, element, elementsId, e);
+          },
+          select: false,
+          rename: (value, elementId, element, e) => {
+            console.log('rename', value, elementId, element, e);
+          },
+          buttons: [
+            {
+              icons: {
+                enabled: "icons-eye",
+                disabled: "icons-eye-none",
+              },
+              value: false,
+              type: "visibled",
+              click: (value, elementId, element, e) => {
+                console.log(value, elementId, element, e);
+              },
+            },
+            {
+              icons: {
+                enabled: "icons-stop",
+                disabled: "icons-circle",
+              },
+              value: false,
+              type: "locked",
+              click: (value, elementId, element, e) => {
+                console.log(value, elementId, element, e);
+              },
+            },
+          ],
+          list: [
+            {
+              type: "line",
+              name: "Название элемента" + i,
+              id: "id_element03" + i,
+              click: (elementId, element, e) => {
+                console.log('click', elementId, element, e);
+              },
+              selected: (elementId, element, elementsId, e) => {
+                console.log('selected', elementId, element, elementsId, e);
+              },
+              select: false,
+              rename: (value, elementId, element, e) => {
+                console.log('rename', value, elementId, element, e);
+              },
+              list: [],
+              buttons: [
+                {
+                  icons: {
+                    enabled: "icons-eye",
+                    disabled: "icons-eye-none",
+                  },
+                  value: false,
+                  type: "visibled",
+                  click: (value, elementId, element, e) => {
+                    console.log(value, elementId, element, e);
+                  },
+                },
+                {
+                  icons: {
+                    enabled: "icons-stop",
+                    disabled: "icons-circle",
+                  },
+                  value: false,
+                  type: "locked",
+                  click: (value, elementId, element, e) => {
+                    console.log(value, elementId, element, e);
+                  },
+                },
+              ],
+            },
+            {
+              type: "line",
+              name: "Название элемента" + i,
+              id: "id_element04" + i,
+              click: (elementId, element, e) => {
+                console.log('click', elementId, element, e);
+              },
+              selected: (elementId, element, elementsId, e) => {
+                console.log('selected', elementId, element, elementsId, e);
+              },
+              select: false,
+              rename: (value, elementId, element, e) => {
+                console.log('rename', value, elementId, element, e);
+              },
+              list: [
+                {
+                  type: "object",
+                  name: "Название элемента" + i,
+                  id: "id_element05" + i,
+                  click: (elementId, element, e) => {
+                    console.log('click', elementId, element, e);
+                  },
+                  selected: (elementId, element, elementsId, e) => {
+                    console.log('selected', elementId, element, elementsId, e);
+                  },
+                  select: false,
+                  rename: (value, elementId, element, e) => {
+                    console.log('rename', value, elementId, element, e);
+                  },
+                  list: [],
+                  buttons: [
+                    {
+                      icons: {
+                        enabled: "icons-eye",
+                        disabled: "icons-eye-none",
+                      },
+                      value: false,
+                      type: "visibled",
+                      click: (value, elementId, element, e) => {
+                        console.log(value, elementId, element, e);
+                      },
+                    },
+                    {
+                      icons: {
+                        enabled: "icons-stop",
+                        disabled: "icons-circle",
+                      },
+                      value: false,
+                      type: "locked",
+                      click: (value, elementId, element, e) => {
+                        console.log(value, elementId, element, e);
+                      },
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  name: "Название элемента" + i,
+                  id: "id_element05" + i,
+                  click: (elementId, element, e) => {
+                    console.log('click', elementId, element, e);
+                  },
+                  selected: (elementId, element, elementsId, e) => {
+                    console.log('selected', elementId, element, elementsId, e);
+                  },
+                  select: false,
+                  rename: (value, elementId, element, e) => {
+                    console.log('rename', value, elementId, element, e);
+                  },
+                  list: [
+                    {
+                      type: "object",
+                      name: "Название элемента" + i,
+                      id: "id_element05" + i,
+                      click: (elementId, element, e) => {
+                        console.log('click', elementId, element, e);
+                      },
+                      selected: (elementId, element, elementsId, e) => {
+                        console.log('selected', elementId, element, elementsId, e);
+                      },
+                      select: false,
+                      rename: (value, elementId, element, e) => {
+                        console.log('rename', value, elementId, element, e);
+                      },
+                      list: [],
+                      buttons: [
+                        {
+                          icons: {
+                            enabled: "icons-eye",
+                            disabled: "icons-eye-none",
+                          },
+                          value: false,
+                          type: "visibled",
+                          click: (value, elementId, element, e) => {
+                            console.log(value, elementId, element, e);
+                          },
+                        },
+                        {
+                          icons: {
+                            enabled: "icons-stop",
+                            disabled: "icons-circle",
+                          },
+                          value: false,
+                          type: "locked",
+                          click: (value, elementId, element, e) => {
+                            console.log(value, elementId, element, e);
+                          },
+                        },
+                      ],
+                    },
+                    {
+                      type: "object",
+                      name: "Название элемента" + i,
+                      id: "id_element05" + i,
+                      click: (elementId, element, e) => {
+                        console.log('click', elementId, element, e);
+                      },
+                      selected: (elementId, element, elementsId, e) => {
+                        console.log('selected', elementId, element, elementsId, e);
+                      },
+                      select: false,
+                      rename: (value, elementId, element, e) => {
+                        console.log('rename', value, elementId, element, e);
+                      },
+                      list: [],
+                      buttons: [
+                        {
+                          icons: {
+                            enabled: "icons-eye",
+                            disabled: "icons-eye-none",
+                          },
+                          value: false,
+                          type: "visibled",
+                          click: (value, elementId, element, e) => {
+                            console.log(value, elementId, element, e);
+                          },
+                        },
+                        {
+                          icons: {
+                            enabled: "icons-stop",
+                            disabled: "icons-circle",
+                          },
+                          value: false,
+                          type: "locked",
+                          click: (value, elementId, element, e) => {
+                            console.log(value, elementId, element, e);
+                          },
+                        },
+                      ],
+                    },
+                    {
+                      type: "object",
+                      name: "Название элемента" + i,
+                      id: "id_element05" + i,
+                      click: (elementId, element, e) => {
+                        console.log('click', elementId, element, e);
+                      },
+                      selected: (elementId, element, elementsId, e) => {
+                        console.log('selected', elementId, element, elementsId, e);
+                      },
+                      select: false,
+                      rename: (value, elementId, element, e) => {
+                        console.log('rename', value, elementId, element, e);
+                      },
+                      list: [],
+                      buttons: [
+                        {
+                          icons: {
+                            enabled: "icons-eye",
+                            disabled: "icons-eye-none",
+                          },
+                          value: false,
+                          type: "visibled",
+                          click: (value, elementId, element, e) => {
+                            console.log(value, elementId, element, e);
+                          },
+                        },
+                        {
+                          icons: {
+                            enabled: "icons-stop",
+                            disabled: "icons-circle",
+                          },
+                          value: false,
+                          type: "locked",
+                          click: (value, elementId, element, e) => {
+                            console.log(value, elementId, element, e);
+                          },
+                        },
+                      ],
+                    },
+                  ],
+                  buttons: [
+                    {
+                      icons: {
+                        enabled: "icons-eye",
+                        disabled: "icons-eye-none",
+                      },
+                      value: false,
+                      type: "visibled",
+                      click: (value, elementId, element, e) => {
+                        console.log(value, elementId, element, e);
+                      },
+                    },
+                    {
+                      icons: {
+                        enabled: "icons-stop",
+                        disabled: "icons-circle",
+                      },
+                      value: false,
+                      type: "locked",
+                      click: (value, elementId, element, e) => {
+                        console.log(value, elementId, element, e);
+                      },
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  name: "Название элемента" + i,
+                  id: "id_element05" + i,
+                  click: (elementId, element, e) => {
+                    console.log('click', elementId, element, e);
+                  },
+                  selected: (elementId, element, elementsId, e) => {
+                    console.log('selected', elementId, element, elementsId, e);
+                  },
+                  select: false,
+                  rename: (value, elementId, element, e) => {
+                    console.log('rename', value, elementId, element, e);
+                  },
+                  list: [],
+                  buttons: [
+                    {
+                      icons: {
+                        enabled: "icons-eye",
+                        disabled: "icons-eye-none",
+                      },
+                      value: false,
+                      type: "visibled",
+                      click: (value, elementId, element, e) => {
+                        console.log(value, elementId, element, e);
+                      },
+                    },
+                    {
+                      icons: {
+                        enabled: "icons-stop",
+                        disabled: "icons-circle",
+                      },
+                      value: false,
+                      type: "locked",
+                      click: (value, elementId, element, e) => {
+                        console.log(value, elementId, element, e);
+                      },
+                    },
+                  ],
+                },
+              ],
+              buttons: [
+                {
+                  icons: {
+                    enabled: "icons-eye",
+                    disabled: "icons-eye-none",
+                  },
+                  value: false,
+                  type: "visibled",
+                  click: (value, elementId, element, e) => {
+                    console.log(value, elementId, element, e);
+                  },
+                },
+                {
+                  icons: {
+                    enabled: "icons-stop",
+                    disabled: "icons-circle",
+                  },
+                  value: false,
+                  type: "locked",
+                  click: (value, elementId, element, e) => {
+                    console.log(value, elementId, element, e);
+                  },
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "folder",
+          name: "Название папки" + i,
+          id: "id_element02" + i,
+          click: (elementId, element, e) => {
+            console.log('click', elementId, element, e);
+          },
+          selected: (elementId, element, elementsId, e) => {
+            console.log('selected', elementId, element, elementsId, e);
+          },
+          select: false,
+          rename: (value, elementId, element, e) => {
+            console.log('rename', value, elementId, element, e);
+          },
+          buttons: [
+            {
+              icons: {
+                enabled: "icons-eye",
+                disabled: "icons-eye-none",
+              },
+              value: false,
+              type: "visibled",
+              click: (value, elementId, element, e) => {
+                console.log(value, elementId, element, e);
+              },
+            },
+            {
+              icons: {
+                enabled: "icons-stop",
+                disabled: "icons-circle",
+              },
+              value: false,
+              type: "locked",
+              click: (value, elementId, element, e) => {
+                console.log(value, elementId, element, e);
+              },
+            },
+          ],
+        },
+        {
+          type: "object",
+          name: "Название элемента" + i,
+          id: "id_element05" + i,
+          click: (elementId, element, e) => {
+            console.log('click', elementId, element, e);
+          },
+          selected: (elementId, element, elementsId, e) => {
+            console.log('selected', elementId, element, elementsId, e);
+          },
+          select: false,
+          rename: (value, elementId, element, e) => {
+            console.log('rename', value, elementId, element, e);
+          },
+          list: [],
+          buttons: [
+            {
+              icons: {
+                enabled: "icons-eye",
+                disabled: "icons-eye-none",
+              },
+              value: false,
+              type: "visibled",
+              click: (value, elementId, element, e) => {
+                console.log(value, elementId, element, e);
+              },
+            },
+            {
+              icons: {
+                enabled: "icons-stop",
+                disabled: "icons-circle",
+              },
+              value: false,
+              type: "locked",
+              click: (value, elementId, element, e) => {
+                console.log(value, elementId, element, e);
+              },
+            },
+          ],
+        },
+      ],
     }];
 
     outliner.appendValue(g);

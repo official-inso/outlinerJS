@@ -126,6 +126,8 @@ export default class templates {
     } else {
       item_ico.innerHTML = '•';
       item_ico.style.opacity = '0.5'
+      item_ico.style.pointerEvents = 'none';
+      item_ico.setAttribute('disabled','disabled')
     }
     
 
