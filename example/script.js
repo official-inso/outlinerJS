@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
       type: "graph",
       name: "тест",
       id: "global_trhyfgh",
-      locked: false,
+      locked: true,
       buttons: [
         {
           icons: {
@@ -31,12 +31,16 @@ document.addEventListener('DOMContentLoaded', function() {
           },
         },
       ],
-      click: () => {},
-      rename: (value, elementId, element, e) => {
-        console.log(value, elementId, element, e);
+      click: (value, elementId, element, e) => {
+        console.log('click', value, elementId, element, e);
       },
-      lockOrUnlock: () => {},
-      hiddenOrVisible: () => {},
+      selected: (elementId, element, elementsId, e) => {
+        console.log('selected', elementId, element, elementsId, e);
+      },
+      select: false,
+      rename: (value, elementId, element, e) => {
+        console.log('rename', value, elementId, element, e);
+      },
       list: [
         {
           type: "line",
@@ -44,8 +48,6 @@ document.addEventListener('DOMContentLoaded', function() {
           id: "global_trhyfg1",
           click: () => {},
           rename: () => {},
-          lockOrUnlock: () => {},
-          hiddenOrVisible: () => {},
           buttons: [
             {
               icons: {
@@ -73,8 +75,6 @@ document.addEventListener('DOMContentLoaded', function() {
               id: "global_trhyfg1",
               click: () => {},
               rename: () => {},
-              lockOrUnlock: () => {},
-              hiddenOrVisible: () => {},
               list: [],
               buttons: [
                 {
@@ -103,8 +103,6 @@ document.addEventListener('DOMContentLoaded', function() {
               id: "global_trhyfg1",
               click: () => {},
               rename: () => {},
-              lockOrUnlock: () => {},
-              hiddenOrVisible: () => {},
               list: [],
               buttons: [
                 {
@@ -135,8 +133,6 @@ document.addEventListener('DOMContentLoaded', function() {
           id: "global_trhyfg2",
           click: () => {},
           rename: () => {},
-          lockOrUnlock: () => {},
-          hiddenOrVisible: () => {},
           list: [],
           buttons: [
             {

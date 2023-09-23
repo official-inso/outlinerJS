@@ -73,6 +73,8 @@ export default class templates {
     let item_elem_left = document.createElement("div");
     let item_elem_right = document.createElement("div");
 
+    let isDoubleClick = false;
+
     const generateId = this.#randomString();
 
     // Создаем атрибуты для элемента item
@@ -82,7 +84,7 @@ export default class templates {
     );
     item.setAttribute(
       "selected",
-      prop.selected != undefined ? prop.selected : false
+      prop.select != undefined ? prop.select : false
     );
     item.setAttribute("isGroup", prop.list && prop.list.length > 0);
     item.setAttribute("open", prop.open != undefined ? prop.open : true);
@@ -156,18 +158,43 @@ export default class templates {
       }
     }
 
+    if (prop.click != undefined) {
+      item_elem.addEventListener("click", (e) => {
+
+        if(isDoubleClick) clearTimeout(isDoubleClick);
+
+        isDoubleClick = setTimeout(() => {
+          if (e.target.classList.contains('navigator__item_ico')) return;
+          if (e.target.parentElement.classList.contains('navigator__item__elem__right')) return;
+          prop.click(
+            prop.id != undefined ? prop.id : generateId,
+            item,
+            e
+          );
+
+          this.#selected(item, prop, e)
+        }, 300);
+
+      });
+    }
+
     if(prop.rename != undefined){
-      item_name.addEventListener('dblclick', (e) => {
+      item_elem.addEventListener('dblclick', (e) => {
+
+        if (isDoubleClick) { // отменить ждущий клик
+          clearTimeout(isDoubleClick);
+        }
+
         if (item_name.getAttribute('disabled') == 'disabled') {
           item_name.removeAttribute('disabled');
           item_name.focus();
         }
+
       })
 
       item_name.addEventListener('blur', (e) => {
         if (item_name.getAttribute("initial-value") != item_name.value) {
-          item_name.setAttribute("initial-value", item_name.value);
-          item_name.setAttribute("disabled", "disabled");
+          item_name.setAttribute("value", item_name.value);
           item_name.setAttribute("initial-value", item_name.value);
           prop.rename(
             item_name.value,
@@ -176,6 +203,7 @@ export default class templates {
             e
           );
         }
+        item_name.setAttribute("disabled", "disabled");
       });
     }
 
@@ -210,6 +238,24 @@ export default class templates {
     navigator.setAttribute("id", id);
 
     return navigator;
+  }
+
+  #selected(element, prop, e) {
+
+    if(!e.ctrlKey) document.querySelectorAll('item').forEach(item => {
+      item.removeAttribute('selected');
+    });
+
+    element.setAttribute('selected', 'true');
+
+    const id = element.querySelector('.navigator__item__elem').getAttribute('data-id');
+    const ids = [];
+
+    document.querySelectorAll('item[selected="true"] > .navigator__item__elem').forEach(item => {
+      ids.push(item.getAttribute('data-id'));
+    });
+
+    if (prop.selected != undefined) prop.selected(id, element, ids, e);
   }
 
   /**

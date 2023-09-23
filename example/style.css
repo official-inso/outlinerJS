@@ -283,6 +283,7 @@ navigatorjs item[open=true] .navigator__item_ico {
 
 .navigator__item__name[disabled] {
   user-select: none;
+  pointer-events: none;
 }
 
 .navigator__item__elem__right {
