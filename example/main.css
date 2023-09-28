@@ -99,7 +99,7 @@ navigatorjs .navigator__item_ico2[type=text] {
   background-image: url('./assets/svg/text.png');
 }
 
-navigatorjs .navigator__item_ico2[type=note] {
+navigatorjs .navigator__item_ico2[type=node] {
   background-image: url('./assets/svg/circle.svg');
 }
 
