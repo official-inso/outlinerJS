@@ -12,7 +12,7 @@
 
 <br>
 
-![Иллюстрация к проекту](https://raw.githubusercontent.com/official-inso/outlinerJS/main/example/assets/screen.png)
+![Иллюстрация к проекту](https://raw.githubusercontent.com/official-inso/outlinerJS/main/example/screen.png)
 
 ## Пример использования
 Интерактивный пример находится в файле проекта example/index.html
