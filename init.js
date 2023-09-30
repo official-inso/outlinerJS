@@ -89,22 +89,6 @@ export default class OutlinerJS {
     for (const key in items) {
       const line = items[key];
 
-      // let itemsList = [];
-      // let btns = [];
-      // if (line.list && line.list.length > 0) {
-      //   itemsList.push(this.#getListItems(line.list));
-      // } 
-
-      // for (const key2 in line['buttons']) {
-      //   const btn = line['buttons'][key2];
-
-      //   if (btn.type == undefined) btn.type = 'default';
-
-      //   if (btn.click == undefined) btn.click = () => { };
-
-      //   btns.push(this.templates.createButton(btn.icons.enabled, btn.type, btn.click));
-      // }
-
       Object.assign(line, {
         container: document.getElementById(this.templates.container.getAttribute('id')),
       })
